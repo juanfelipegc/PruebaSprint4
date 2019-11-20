@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "cfac5d79-a534-4170-8737-5579df5f41ce",
+		"name": "Microservicio Clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get clientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://5r3kozjj10.execute-api.us-west-1.amazonaws.com/test/clientes?TableName=Clientes",
+					"protocol": "https",
+					"host": [
+						"5r3kozjj10",
+						"execute-api",
+						"us-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"test",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "TableName",
+							"value": "Clientes"
+						}
+					]
+				},
+				"description": "Obtiene los clientes de la aplicación"
+			},
+			"response": []
+		},
+		{
+			"name": "Create cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"TableName\":\"Clientes\",\n\t    \"Item\": {\n        \"id\": \"1000285124\",\n        \"nombre\":\"Peppa\",\n        \"apellido\":\"Pig\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://5r3kozjj10.execute-api.us-west-1.amazonaws.com/test/clientes",
+					"protocol": "https",
+					"host": [
+						"5r3kozjj10",
+						"execute-api",
+						"us-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"test",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Crea un nuevo cliente en la base de datos de clientes."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cliente por cédula",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Key\": {\n        \"AttributeValue\": \"1000285124\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://5r3kozjj10.execute-api.us-west-1.amazonaws.com/test/clientes?TableName=Clientes",
+					"protocol": "https",
+					"host": [
+						"5r3kozjj10",
+						"execute-api",
+						"us-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"test",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "TableName",
+							"value": "Clientes"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Obtener cliente por la cédula"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Cliente por cédula",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"TableName\":\"Clientes\",\n    \"Key\": {\n        \"id\": \"1000285124\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://5r3kozjj10.execute-api.us-west-1.amazonaws.com/test/clientes?",
+					"protocol": "https",
+					"host": [
+						"5r3kozjj10",
+						"execute-api",
+						"us-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"test",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "TableName",
+							"value": "Clientes",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Elimina al cliente con la cédula dada."
+			},
+			"response": []
+		}
+	]
+}

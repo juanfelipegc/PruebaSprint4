@@ -1,0 +1,19 @@
+{
+  "name": "msinventario",
+  "version": "1.0.0",
+  "description": "Microservicio de inventario",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Santiago Salazar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "kafka-node": "^4.1.3",
+    "mongoose": "^5.5.9"
+  }
+}

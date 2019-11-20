@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.nombre }}</h1>
+<p>{{ object.marca }}</p>
+    {% load humanize %}
+<p>{{ object.precio|intcomma }}</p>
+{% endblock %}

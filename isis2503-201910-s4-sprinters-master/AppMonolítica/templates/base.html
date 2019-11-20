@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+{% load static %}
+{% load pwa %}
+<head>
+
+
+    <script type="text/javascript">
+        var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        var dataBase = null;
+
+        function startDB() {
+
+            dataBase = indexedDB.open("object", 1);
+
+            dataBase.onupgradeneeded = function (e) {
+
+                var active = dataBase.result;
+                //   var object = active.createObjectStore("products", {keyPath: 'id', autoIncrement: true});
+                //  active = dataBase.result;
+                var object = active.createObjectStore("ventaactiva", {keyPath: 'clienteid', autoIncrement: true});
+                object.createIndex('by_clienteid', 'clienteid', {unique: false});
+                //  object.createIndex('by_dni', 'dni', { unique : true });
+
+            };
+
+            dataBase.onsuccess = function (e) {
+                console.log('Database loaded');
+            };
+
+            dataBase.onerror = function (e) {
+                console.log('Error loading database');
+            };
+        }
+
+        function addProducts(clienteid) {
+            clienteid = '1229384822';
+            console.log(clienteid);
+
+            if (navigator.onLine)
+            {
+                console.log('online');
+            } else {
+                console.log('offline');
+                var active = dataBase.result;
+                var data = active.transaction(["ventaactiva"], "readwrite");
+                var object = data.objectStore("ventaactiva");
+                var index = object.index("by_clienteid");
+                var request = index.get(String(clienteid));
+
+                let producto = document.querySelector("input[name=id_producto]").value;
+                let  cantidad = document.querySelector("input[name=cantidad]").value;
+                request.onsuccess = function ()
+                {
+                    var result = request.result;
+                    var objecty = [producto, cantidad];
+                    console.log(result)
+                    result.infoProducts.push(objecty);
+                    object.put(result);
+                }
+
+
+            }
+
+        }
+
+        function saveClienteId() {
+
+
+            var active = dataBase.result;
+            var data = active.transaction(["ventaactiva"], "readwrite");
+            var object = data.objectStore("ventaactiva");
+
+            var id = document.querySelector("input[name=id_cliente]").value
+
+            var request = object.put({
+                clienteid: id,
+                infoProducts: []
+            });
+
+            request.onerror = function (e) {
+                alert(request.error.name + '\n\n' + request.error.message);
+            };
+
+            data.oncomplete = function (e) {
+                console.log('Comeon')
+            };
+
+            return id;
+        }
+
+
+    </script>
+    {% progressive_web_app_meta %}
+</head>
+<body onload="startDB()">
+{% include 'navbar.html' %}
+
+{% block content %}
+    replace me
+{% endblock %}
+
+</body>
+</html>

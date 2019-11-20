@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>En Venta activa</h1>
+<form action='' method='POST'>{% csrf_token %}
+    <div>Ingresa los productos a comprar:</div>
+    {{ compra.as_p }}
+    <input type='submit' value='Agregar' id='Agregar' onclick="addProducts()"/>
+    <input type='submit' value='Terminar' name='fin'>
+</form>
+
+{% endblock %}

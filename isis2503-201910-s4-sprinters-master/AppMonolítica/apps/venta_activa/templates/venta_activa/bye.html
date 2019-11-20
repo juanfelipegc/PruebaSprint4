@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Terminado !</h1>
+<div>{% csrf_token %}
+    {{ factura | safe }}
+</div>
+{% endblock %}
